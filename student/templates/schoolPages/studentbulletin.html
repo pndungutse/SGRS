@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>New Title Here</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+            .table {
+                border: 1px solid black;;
+            }
+           
+           
+            .text-center{
+                text-align: center;
+            }
+            
+            .subject {
+                width: 140px;
+                height: 60px;
+            }
+            .boxes {
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+       
+    Sector: <strong>{{sector}}</strong> <br> <br>
+    School: <strong>{{school}}</strong> <br> <br>
+    Class: <strong>{{classe}}</strong> <br> <br>
+    Name: <strong>{{student.f_name}} {{student.l_name}}</strong> <br> <br>
+    N <sup>o</sup> of students: <strong>{{n_of_students}}</strong> <br><br>
+
+    <div class="text-center">
+        <img class="logo" src="http://localhost:8000{{school.logo.url}}" alt="" width="800px" height="100px">
+    </div>
+    
+
+    <h3 class="text-center">FORM REPORT</h3>
+    <table class="table">
+        <tr>
+            <th class="subject">SUBJECT</th>
+            <th colspan="3">MAXIMUM</th>
+            <th colspan="3">FIRST TERM</th>
+            <th>Percentage</th>
+            <th>Grade</th>
+        </tr>
+        <thead>
+            <tr>
+                <th class="subject"></th>
+
+                    <th class="subject">Mid-Exam</th>
+                    <th class="subject">Final-Exam</th>
+                    <th class="subject">Total</th>
+                    <th class="subject">Mid-Exam</th>
+                    <th class="subject">Final-Exam</th>
+                    <th class="subject">Total</th>
+                    <th class="subject">Percentage</th>
+                    <th class="subject"></th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="subject">Kinyarwanda</td>
+            <td>100</td>
+            <td>100</td>
+            <td>200</td>
+            <td class="boxes">{{quater1_kiny.mid_marks}}</td>
+            <td class="boxes">{{quater1_kiny.final_marks}}</td>
+            <td class="boxes">{{total_quater1_kiny}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="subject">English</td>
+            <td>100</td>
+            <td>100</td>
+            <td>200</td>
+            <td class="boxes">{{quater1_engl.mid_marks}}</td>
+            <td class="boxes">{{quater1_engl.final_marks}}</td>
+            <td class="boxes">{{total_quater1_engl}}</td>
+            <td class="boxes"></td>
+        </tr>
+        <tr>
+            <td class="subject">Maths</td>
+            <td>100</td>
+            <td>100</td>
+            <td>200</td>
+            <td class="boxes">{{quater1_math.mid_marks}}</td>
+            <td class="boxes">{{quater1_math.final_marks}}</td>
+            <td class="boxes">{{total_quater1_math}}</td>
+            <td class="boxes"></td>
+        </tr>
+        <tr>
+            <td class="subject">Social Studies</td>
+            <td>100</td>
+            <td>100</td>
+            <td>200</td>
+            <td class="boxes">{{quater1_social.mid_marks}}</td>
+            <td class="boxes">{{quater1_social.final_marks}}</td>
+            <td class="boxes">{{total_quater1_social}}</td>
+            <td class="boxes"></td>
+        </tr>
+        <tr>
+            <td class="subject">SET</td>
+            <td>100</td>
+            <td>100</td>
+            <td>200</td>
+            <td class="boxes">{{quater1_est.mid_marks}}</td>
+            <td class="boxes">{{quater1_est.final_marks}}</td>
+            <td class="boxes">{{total_quater1_est}}</td>
+            <td class="boxes"></td>
+        </tr>
+        <tr>
+        <td class="subject">TOTAL</td>
+        <td>500</td>
+        <td>500</td>
+        <td>1000</td>
+        <td class="boxes"></td>
+        <td class="boxes"></td>
+        <td class="boxes">{{total_quater1}}</td>
+        <td class="boxes">{{total_percent}} %</td>
+        <td  class="boxes">{{grade}}</td>
+
+        </tr>
+    </tbody>
+    </table>
+
+    </body>
+</html>

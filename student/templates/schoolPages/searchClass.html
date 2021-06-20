@@ -1,0 +1,76 @@
+{% extends "schoolPages/home_school.html" %}
+{% load crispy_forms_tags %}
+
+{% comment %} {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+    {% endfor %}
+{% endif %} {% endcomment %}
+
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>
+    
+{% endfor %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School
+        </span>
+</li>
+{% endblock %}
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>   
+{% endfor %}
+
+<br>
+
+    <form role="search" action='/searchClass/' onsubmit="return validateForm()" name="myForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Enter Year:</label>
+
+                    <input type="text" class="form-control" id="currentYear" role="search" value="" name="year">
+                </div>
+                <p id="demo"></p>
+                
+                <label for="">Select Class:</label>
+                <div class="form-group">
+                    
+                    <select name="q" id="" class="form-control">
+                        <option value="">Select Classe</option>
+                        {% for classe in classes %}
+                            <option value="{{classe.id}}">{{classe.class_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div> </br>
+                <button style="margin-left: 495px;" type="submit" class="btn btn-sm btn-success">Continue</button>
+            </div>            
+            </div>      
+    </form>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"] ["year"].value;
+            if (x == ""){
+                document.getElementById("demo").innerHTML = "Enter correct format of year. eg:xxxx"
+            }
+        }
+
+        // function currentYear() {
+        //     document.getElementById("currentYear").value = new Date().getFullYear()
+        // }
+
+    </script>
+    <br><br><br>
+
+
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'schoolPages/dashboard_layout.html' %}
+{% load static %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>
+    
+{% endfor %}
+
+<table class="table">
+    <a style="background-color: #080808; border: #080808;" href="{% url 'course_create' %}" class="btn btn-primary mb-3">Add Course</a>
+    <br>
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Course Description</th>
+            <th colspan="2" class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in page_obj %}
+        <tr>
+            <td>{{course.course_name}}</td>
+            <td>{{course.course_desc}}</td>
+            <td><a href="{% url 'course_update' course.id %}" class="btn btn-sm btn-success">Update</a></td>
+            <td><a href="{% url 'course_update' course.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+<div class="float-right">
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+
+{% endblock %}

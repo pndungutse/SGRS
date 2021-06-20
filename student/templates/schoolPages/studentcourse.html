@@ -1,0 +1,81 @@
+{% extends "schoolPages/home_school.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block mytitle %}
+provide marks
+{% endblock %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+      <div>
+        <h3 class="text-center">Provide Marks to this student</h3>
+      </div>
+      <br />
+      <div>
+        <h4>
+          Student: <strong>{{studentt.f_name}} {{studentt.l_name}}</strong>
+        </h4>
+      </div>
+      <br /><br />
+
+      <form action="" method="POST">
+        {% csrf_token %} {{formSet.management_form}} {% for form in formSet %}
+        <div class="row">
+          <div class="form-group">
+              {{form}}
+          </div>
+        </div>
+        <br />
+
+        {% endfor %}
+        <input
+          type="submit"
+          name="submit"
+          class="btn btn-sm btn-success float-right"
+          style="margin-right: 180px"
+        />
+      </form>
+      <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+    <script>
+      $("#id_student_course_set-0-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-0-final_marks").attr({'max': 100, 'min': 0})     
+      $("#id_student_course_set-1-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-1-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-2-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-2-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-3-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-3-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-4-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-4-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-5-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-5-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-6-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-6-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-7-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-7-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-8-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-8-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-9-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-9-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-10-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-10-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-11-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-11-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-12-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-12-final_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-13-mid_marks").attr({'max': 100, 'min': 0})
+      $("#id_student_course_set-13-final_marks").attr({'max': 100, 'min': 0})
+      
+    </script>
+
+{% endblock %}
+
+    
+  

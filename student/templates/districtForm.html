@@ -1,0 +1,28 @@
+{% extends "district_create.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block mytitle %}
+Create District
+{% endblock %}
+
+
+
+{% block myheader %}
+    <h1 class="display-5">District Creation</h1>
+    <p class="lead">Here, The District that will be created, will be used by the Sectors that are belong to it</p>
+{% endblock %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    
+    <div class="row">
+        <div class="col-md-6">
+            {{form.district_name|as_crispy_field}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fas fa-database"></i>Create District</button>
+</form>
+{% endblock %} 

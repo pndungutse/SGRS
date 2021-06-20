@@ -1,0 +1,368 @@
+{% extends 'districtPages/dashboard_layout.html' %}
+{% load static %}
+
+{% block districtName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{district}} District</span>
+</li>
+{% endblock %}
+
+{% block body %}
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>  
+{% endfor %}
+ 
+<div class="row">
+  <div class="col-md-6">
+    
+    <div class="card bg-white text-black shadow md-4">
+      <h5 class="text-center">Math Students' Performance</h5> <br>
+      <canvas id="myChart" width="400" height="150"></canvas>
+    </div>
+    
+
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChart').getContext('2d');
+      let total_math_student = {{total_math_student}}
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['Math marks with 0-25 ', 'Math marks with 26-50 ', 'Math marks with 51-75', 'Math marks with 76-100'],
+  datasets: [{
+      label: '# of Students with the following range of marks',
+      data: [(({{count_math_25}}*100)/(total_math_student-4)).toFixed(1), (({{count_math_50}}*100)/(total_math_student-4)).toFixed(1), (({{count_math_75}}*100)/(total_math_student-4)).toFixed(1), (({{count_math_100}}*100)/(total_math_student-4)).toFixed(1)],
+      backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+  }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 1,
+            borderColor: '#808080',
+            borderRadius: 20, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+  }); 
+</script>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card bg-white text-black shadow md-4">
+      <h5 class="text-center">English Students' Performance </h5> <br>
+      <canvas id="myChartengl" width="400" height="150"></canvas>
+    </div>
+    
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChartengl').getContext('2d');
+      let total_engl_student = {{total_engl_student}};
+var myChart = new Chart(ctx, {
+type: 'doughnut',
+data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['English marks with 0-25 ', 'English marks with 26-50 ', 'English marks with 51-75', 'English marks with 76-100'],
+  datasets: [{
+      label: '# of Students with the following range of marks in English Course',
+      data: [(({{count_engl_25}}*100)/(total_engl_student-1)).toFixed(1), (({{count_engl_50}}*100)/(total_engl_student-1)).toFixed(1), (({{count_engl_75}}*100)/(total_engl_student-1)).toFixed(1), (({{count_engl_100}}*100)/(total_engl_student-1)).toFixed(1)],
+      backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+  }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+  }); 
+</script>
+  </div>
+
+</div>
+<br><br>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card bg-white text-black shadow md-4">
+      <h5 class="text-center">Social Studies Performance in {{school}} School</h5> <br>
+      <canvas id="myChartsocial" width="400" height="150"></canvas>
+    </div>
+    
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChartsocial').getContext('2d');
+      let total_social_student = {{total_social_student}};
+var myChart = new Chart(ctx, {
+type: 'doughnut',
+data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['Social Studies marks with 0-25 ', 'Social Studies marks with 26-50 ', 'Social Studies marks with 51-75', 'Social Studies marks with 76-100'],
+  datasets: [{
+      label: '# of Students with the following range of marks in English Course',
+      data: [(({{count_social_25}}*100)/(total_social_student-1)).toFixed(1), (({{count_social_50}}*100)/(total_social_student-1)).toFixed(1), (({{count_social_75}}*100)/(total_social_student-1)).toFixed(1), (({{count_social_100}}*100)/(total_social_student-1)).toFixed(1)],
+      backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+  }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+  }); 
+</script>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card bg-white text-black shadow md-4">
+      <h5 class="text-center">Kinyarwanda Performance in {{school}} School</h5> <br>
+      <canvas id="myChartkiny" width="400" height="150"></canvas>
+    </div>
+    
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChartkiny').getContext('2d');
+      let total_kiny_student = {{total_kiny_student}};
+var myChart = new Chart(ctx, {
+type: 'line',
+data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['Kinyarwanda marks with 0-25 ', 'Kinyarwanda marks with 26-50 ', 'Kinyarwanda marks with 51-75', 'Kinyarwanda marks with 76-100'],
+  datasets: [{
+      label: '# of Students with the following range of marks in Kinyarwanda Course',
+      data: [(({{count_kiny_25}}*100)/total_kiny_student).toFixed(1), (({{count_kiny_50}}*100)/total_kiny_student).toFixed(1), (({{count_kiny_75}}*100)/total_kiny_student).toFixed(1), (({{count_kiny_100}}*100)/total_kiny_student).toFixed(1)],
+      backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+  }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+  }); 
+</script>
+  </div>
+</div>
+<br><br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-white text-black shadow md-4">
+        <h5 class="text-center">SET Students' Performance</h5> <br>
+        <canvas id="myChartset" width="400" height="150"></canvas>
+      </div>
+      
+<script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChartset').getContext('2d');
+        let total_est_student = {{total_est_student}};
+var myChart = new Chart(ctx, {
+type: 'doughnut',
+data: {
+    // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+    labels: ['SET marks with 0-25 ', 'SET marks with 26-50 ', 'SET marks with 51-75', 'SET marks with 76-100'],
+    datasets: [{
+        label: '# of Students with the following range of marks',
+        data: [(({{count_est_25}}*100)/total_est_student).toFixed(1), (({{count_est_50}}*100)/total_est_student).toFixed(1), (({{count_est_75}}*100)/total_est_student).toFixed(1), (({{count_est_100}}*100)/total_est_student).toFixed(1)],
+        backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+      ],
+        borderWidth: 1
+    }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+    }); 
+</script>
+    </div>
+  </div>
+<br>
+{% endblock %}
+

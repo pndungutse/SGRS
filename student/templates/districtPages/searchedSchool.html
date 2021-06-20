@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  border: 2px solid black;
+  
+}
+
+.subject{
+    text-align: center;
+}
+
+
+th {
+    font-size: 14px;
+}
+.summary {
+    font-size: 12px;
+}
+
+
+</style>
+    
+</head>
+<body> 
+
+    {{total_quater1_quater2_math}}
+    <center>
+        <img class="logo" src="http://localhost:8000{{schooll.logo.url}}" width="500px" height="80px">
+    </center>
+    <br>
+    <div class="head">
+    District: <strong>{{district}}</strong> <br><br>
+    Sector: <strong>{{sector}}</strong> <br><br>
+    School Name: <strong>{{schooll.school_name}}</strong> <br><br> 
+    N <sup>0</sup> Students: <strong>{{n_student}}</strong>
+    </div>
+    
+    
+
+
+
+
+    
+    
+    <br> <br>
+    <center><h3>SCHOOL PERFORMANCE IN THE YEAR OF {{yearToSearch}}</h3> <br>
+    <table style="border: 1px solid;">
+        <thead>
+            <tr>
+                <th><strong>Course</strong></th>
+                <th class="subject">Students with 0-25 Marks</th>
+                <th class="subject">Students with 26-50 Marks</th>
+                <th class="subject">Students with 51-75 Marks</th>
+                <th class="subject">Students with 76-100 Marks</th>
+                <th class="subject">Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Math</strong></td>
+                <td class="subject">{{quater1_math25}}</td>
+                <td class="subject">{{quater1_math50}}</td>
+                <td class="subject">{{quater1_math75}}</td>
+                <td class="subject">{{quater1_math100}}</td>
+                <td class="summary">These are the number of students in {{schooll}} who got the following range of marks<br> 
+                    in Math Course in the year of {{yearToSearch}}</td>
+            </tr>
+            <tr>
+                <td><strong>STE</strong></td>
+                <td class="subject">{{quater1_set25}}</td>
+                <td class="subject">{{quater1_set50}}</td>
+                <td class="subject">{{quater1_set75}}</td>
+                <td class="subject">{{quater1_set100}}</td>
+                <td class="summary">These are the number of students in {{schooll}} who got the following range of marks<br> 
+                    in STE Course in the year of {{yearToSearch}}</td>
+            </tr>
+            <tr>
+                <td><strong>Social Studies</strong></td>
+                <td class="subject">{{quater1_social25}}</td>
+                <td class="subject">{{quater1_social50}}</td>
+                <td class="subject">{{quater1_social75}}</td>
+                <td class="subject">{{quater1_social100}}</td>
+                <td class="summary">These are the number of students in {{schooll}} who got the following range of marks<br> 
+                    in Social Studies Course in the year of {{yearToSearch}}</td>
+            </tr>
+            <tr>
+                <td><strong>English</strong></td>
+                <td class="subject">{{quater1_engl25}}</td>
+                <td class="subject">{{quater1_engl50}}</td>
+                <td class="subject">{{quater1_engl75}}</td>
+                <td class="subject">{{quater1_engl100}}</td>
+                <td class="summary">These are the number of students in {{schooll}} who got the following range of marks<br> 
+                    in English Course in the year of {{yearToSearch}}</td>
+
+            </tr>
+            <tr>
+                <td><strong>Kinyarwanda</strong> </td>
+                <td class="subject">{{quater1_kiny25}}</td>
+                <td class="subject">{{quater1_kiny50}}</td>
+                <td class="subject">{{quater1_kiny75}}</td>
+                <td class="subject">{{quater1_kiny100}}</td>
+                <td class="summary">These are the number of students in {{schooll}} who got the following range of marks<br> 
+                    in Kinyarwanda Course in the year of {{yearToSearch}}</td>
+
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td>{{n_student}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,126 @@
+{% extends "schoolPages/home_school.html" %}
+    {% load crispy_forms_tags %}
+{% load static %}
+
+{% block mytitle %}
+Register Student
+{% endblock %}
+
+
+{% block myheader %}
+<h1 class="display-5 text-center">Student Register</h1>
+<p class="lead">Here, The Student that will be Registered</p>
+{% endblock %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+{% comment %} <script>
+    var thisYear = new Date().getFullYear(),
+    options = "";
+    for (var i = thisYear; i<= thisYear + 1; i++){
+        options += "<option>" + i + "</option>";
+    }
+    parseInt($("#id_year_reg").append(options), 10);
+
+
+
+</script> {% endcomment %}
+
+<style>
+
+    form button{
+        margin-right: 170px;
+    }
+
+    .contain{
+        display: flex;
+    }
+    .form-group {
+        width: 70%;
+    }
+
+
+
+</style>
+
+
+
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+       <div class="contain">
+        <div class="form-group">
+            {{form.f_name|as_crispy_field}}
+            {{form.l_name|as_crispy_field}}
+            {{form.gender|as_crispy_field}}
+            {{form.physical_disability|as_crispy_field}}
+            </div>
+
+            <div class="form-group">
+
+                    {{form.year_reg|as_crispy_field}}
+                    
+                    <p id="demo"></p>
+               
+                {{form.dob|as_crispy_field}}
+                <!-- {% for error in form.dob.errors %}
+        <span class="text-danger">{{error}}</span>
+        {% endfor %} -->
+                {{form.classe|as_crispy_field}}
+            </div>
+
+            
+        </div>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+
+        <br>
+
+    </form>
+    <!-- <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script>
+        $("#id_dob").datepicker({
+            maxDate: 0
+        });
+    </script> -->
+    
+    <!-- <form action="POST">
+            <div class="row">
+                <div class="col-md-16">
+                    <div class="field">
+                        <div class="control">
+                            {{form.f_name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+    </form> -->
+{% comment %} 
+    <script>
+        function yearRegValidation() {
+            year = document.getElementById("id_year_reg").value;
+            todaysDate = new Date();
+            todaysYear = todaysDate.getFullYear();
+            add1todaysYear = todaysYear +1;
+            sub1add1todaysYear = todaysYear - 1;
+            if (year < todaysYear || year > add1todaysYear) {
+                text = "Input not valid: Reg Year should be Current Year or next one";
+                document.getElementById("demo").innerHTML = text;
+            }else {
+                return false
+            }
+           
+        }
+        
+        
+    </script> {% endcomment %}
+
+    <br>
+{% endblock %} 
+

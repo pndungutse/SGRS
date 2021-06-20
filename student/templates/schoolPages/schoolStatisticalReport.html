@@ -1,0 +1,454 @@
+{% extends "schoolPages/dashboard_layout.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block myBootstrapFiles %}
+
+<link rel="stylesheet" href="{% static 'css/simple-sidebar.css'%}">
+
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script src="{% static '/js/chartjs/Chart.min.js' %}"></script>
+<link rel="stylesheet" href="{% static '/css/chartcss/Chart.min.css'%}">
+
+<!-- Bootstrap CSS CDN -->
+
+<link rel="stylesheet" href="{% static 'css/bootstraphome.min.css' %}">
+
+
+{% endblock %}
+
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="row">
+  <div class="col-md-4">
+    {% comment %} <button class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal1">
+      View Class with Marks
+    </button> {% endcomment %}
+    <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModa4">
+      Order Classes based on Performances
+    </button>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-secondary btn-block" data-toggle="modal" data-target="#myModa2">
+      Report for two different years
+    </button>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-info btn-block" data-toggle="modal" data-target="#myModa3">
+      Report Based on Quater
+    </button>
+  </div>
+</div>
+
+<br>
+
+
+
+
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on choices</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="container mt-3">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#menu1">Year Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">Quater Report</a>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="menu1" class="container tab-pane active"><br>
+            <div class="modal-body">
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <form role="search" action='schoolStatisticalReportYear'>
+                      <div class="form-group">
+                        <select class="form-control" name="classe" id="sectors">
+                          <option selected>Select Classe</option>
+                          {% for classe in classes %}
+                          <option value="{{classe.id}}">{{classe}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" class="form-control" role="search" placeholder="Search by Year" name='year' required>
+                      </div>
+
+                      <button class="btn btn-primary btn-sm">Generate Report</button>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="menu2" class="container tab-pane fade"><br>
+            <div class="modal-body">
+              <form role="search" action='classWithQuaterMarks'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control" name="classe" id="classes">
+                        <option selected>Select Classe</option>
+                        {% for classe in classes %}
+                        <option value="{{classe.id}}">{{classe}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div> 
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control" name="quater">
+                        <option selected disabled>Select Quater</option>
+                        <option value="QUATER1">QUATER1</option>
+                        <option value="QUATER2">QUATER2</option>
+                        <option value="QUATER2">QUATER3</option>
+                      </select>
+                    </div>
+                  </div> 
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control" name="course" id="res">
+                        <option selected>Select Course</option>
+                        {% for course in courses %}
+                        <option value="{{course.id}}">{{course.course_name}}</option>
+                        {% endfor %}
+  
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input type="number" class="form-control" role="search" placeholder="Search by Year" name='year' required>
+                    </div>
+                  </div>
+                </div>
+
+
+                <button class="btn btn-primary btn-sm">Generate Report</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on on two different years</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <form role="search" action='schoolTwoYearReport'>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" role="search" placeholder="Enter Year 1" name='year1' required>
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" role="search" placeholder="Enter Year 2" name='year2' required>
+                </div>
+
+                <button class="btn btn-primary btn-sm">Generate Report</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModa3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on Quater</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <form role="search" action='schoolQuaterReport'>
+
+                <div class="form-group">
+                  <select name="quater" id="" class="form-control">
+                    <option selected disabled>Select Quater</option>
+                    <option value="QUATER1">QUATER1</option>
+                    <option value="QUATER2">QUATER2</option>
+                    <option value="QUATER3">QUATER2</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" role="search" placeholder="Enter Year 2" name='year' required>
+                </div>
+
+                <button class="btn btn-primary btn-sm">Generate Report</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModa4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on choices</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form role="search" action='schoolAvgFromSchool'>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" type="number" name="year" placeholder="Enter year" required>
+              </div>
+
+            </div>
+
+          </div>
+
+          <button class="btn btn-success btn-sm">Generate Report</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div>
+
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  
+  <div class="col-md-6">
+
+    <div class="card bg-white text-black shadow md-4">
+    <a href="{% url 'schoolGenderPdf' %}" class="btn btn-info btn-sm">View in Pdf</a>
+      <h5 class="text-center">Gender Students' Partcipating in {{school}}</h5> <br>
+      <canvas id="myChart" width="500" height="200"></canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card bg-white text-black shadow md-4">
+    <a href="{% url 'schoolPhysicalPdf' %}" class="btn btn-info btn-sm">View in Pdf</a>
+      <h5 class="text-center">Physical Disability Students' Partcipating in {{school}}</h5> <br>
+      <canvas id="myChart1" width="500" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+    <script>
+      $(document).ready(function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+            labels: ['Male Students ', 'Female Students'],
+            datasets: [{
+              label: '# of Students with the following range of numbers',
+  {% for obj in answers2 %}
+    data: [(({{ obj.0}}*100)/{{obj.4}}).toFixed(1), (({{ obj.1}}*100)/{{obj.4}}).toFixed(1)],
+        {% endfor %}
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+      ],
+        borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+        borderWidth: 1
+}]
+},
+        options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+}); 
+    </script>
+
+
+<script>
+  $(document).ready(function () {
+    var ctx = document.getElementById('myChart1').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+        labels: ['Physical Disability Students', 'NO Physical Disability Students'],
+        datasets: [{
+          label: '# of Students with the following range of numbers',
+{% for obj in answers2 %}
+data: [(({{ obj.2}}*100)/{{obj.4}}).toFixed(1), (({{ obj.3}}*100)/{{obj.4}}).toFixed(1)],
+    {% endfor %}
+    backgroundColor: [
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+  ],
+    borderColor: [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+  ],
+    borderWidth: 1
+}]
+},
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+}); 
+</script>
+
+
+{% endblock %}

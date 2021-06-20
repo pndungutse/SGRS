@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>male-female school</title>
+
+    <style>
+ 
+
+ @page {
+          size: letter portrait;
+          @frame content_frame {
+            left: 50pt;
+            width: 512pt;
+            top: 50pt;
+            height: 692;
+            -pdf-frame-border: 1;
+          }
+         @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+          
+        }
+        .styled-table {
+            margin-left: 15px;
+        }
+
+</style> 
+</head>
+<body>
+<br>
+    <div id="header_content" style="margin-left: 20px;"> 
+        District: <strong>{{sector.district}}</strong><br><br>
+        Sector: <strong>{{sector}}</strong> <br><br>
+        </div>
+    <h2 style="text-align: center;">Male and Female participation in the Sector of {{sector}} Sector</h2>
+    <br>
+    <table class="styled-table" border="1" cellspacing="0" cellpadding="5" style="margin-left: 10px;">
+        <thead>
+            <tr>
+                <th>GENDER</th>
+                <th>MALE</th>
+                <th>PFEMALE</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in answers %}
+            
+            <tr>
+                <td>Number of participation physical ability</td>
+                <td>{{obj.0}}</td>
+                <td>{{obj.1}}</td>
+                <td>{{n_students}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="footer_content"> (c) - page <pdf:pagenumber>
+    of <pdf:pagecount>
+  </div>
+</body>
+</html>

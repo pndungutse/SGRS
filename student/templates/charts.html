@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/chart_css/Chart.min.css' %}"> -->
+
+     <!-- <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css"> -->
+    <!--Chart js-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" /> -->
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <link rel="stylesheet" href="{% static 'css/chartcss/chart.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chartcss/semantic.min.css' %}">
+
+    <script src="{% static 'js/chartjs/chart.min.js' %}" crossorigin="anonymous"></script>
+    <!-- <script src="{% static 'js/chartjs/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script> -->
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+
+
+</head>
+<body>
+
+    <!-- <script>
+        $(document).ready(function(){
+            var endpoint = 'api/chart/data/'
+            $.ajax({
+                method: GET,
+                url: endpoint,
+                success: function(data){
+                    console.log(data)
+                },
+                error: function(error_data){
+                    console.log("error")
+                    console.log(error_data)
+                }
+            })
+        }) 
+    </script>-->
+
+
+    <h2 class="text-center">Charts Overview</h2>
+    <canvas id="myChart" width="400" height="100"></canvas>
+    <script>
+        $(document).ready(function(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
+        datasets: [{
+            label: '# of Students with the following range of marks',
+            data: [{{no1}}, {{no2}}, {{no3}}, {{no4}}, {{no5}}, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+        }); 
+    </script>
+
+
+
+
+
+    <!-- <script src="{% static 'js/chart_js/Chart.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js/chart_js/jquery-3.3.1.js' %}"></script>  -->
+    
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="{% static 'css/simple-sidebar.css'%}">
+
+    <!-- google Font -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> -->
+    <!-- link for favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- Jquery -->
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+
+
+    <!-- <script src="{% static '/js/jquery.localize.min.js' %}"></script>
+    <script src="{% static '/js/internationalization.js' %}"></script> -->
+
+    <!--Chart js-->
+    <script src="{% static '/js/chartjs/Chart.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/css/chartcss/Chart.min.css'%}">
+
+    <!-- Bootstrap CSS CDN -->
+
+    <link rel="stylesheet" href="{% static 'css/bootstraphome.min.css' %}">
+    <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+
+    <!-- Font Awesome and feather fonts -->
+    <!-- <link rel="stylesheet" href="{% static 'font-awesome/4.6.1/css/font-awesome.min.css' %}"> -->
+    <link rel="stylesheet" href="{% static '/fonts/feather/iconfont.css'%}"> {% block extrahead %}{% endblock %}
+</head>
+
+<body style=" background-color:#F8F9FA; font-family: 'Inconsolata', monospace; border-top:4px solid #FAB811">
+    <script src="{% static 'js/chartjs/chartjs-plugin-datalabels.js' %}"></script>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar" aria-label="">
+            <center>
+                <div class="sidebar-header">
+                    <a href="{% url 'sectorPage' %}">
+                        {% block displayname %}
+                        <img src="{% static 'images/SGRS logo.png' %}" alt="logo" height="40" width="110">
+                        {% endblock %}
+                    </a>
+                </div>
+            </center>
+            <ul class="list-unstyled components">
+                {% if user.is_staff %}
+                <p> <strong style="color: #78797F;">SUPER ADMIN</strong> </p>
+                {% else %}
+                <p> <strong style="color: #78797F;">Sector User</strong> </p>
+                <hr>
+                {% endif %}
+                <li class="{% if 'sectorPage' in request.path %} active {% endif %}">
+                    <a href="{% url 'sectorPage' %}"><span class="feather icon-map"></span> Dashboard</a>
+                </li>
+                <li class="{% if 'school' in request.path %} active {% endif %}">
+                    <a href="{% url 'schoolList' %}"><span class="feather icon-home"></span> Schools</a>
+                </li>
+                <li class="{% if 'sectorSchoolReport' in request.path %} active {% endif %}">
+                    <a href="{% url 'sectorSchoolReport' %}"><span class="feather icon-feather"></span> Statistical Reports</a>
+                </li>
+
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <form action="{% url 'logout' %}" method="post" id="logout">
+                        {% csrf_token%}
+                        <button style="background-color: #080808; border: #080808;" class="btn btn-primary btn-block mt-5" type="submit" id="logout_confirmed">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                    <div style="margin-right: 650px;">
+                        {% block sectorName %}{% endblock %}
+                    </div>
+                            <li class="nav-item">
+                                <span class="nav-link mt-2 text-uppercase text-success">Logged in as,
+                                    {{request.user.username}}</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'accountSectorSettings' %}">
+                                    <span class="nav-link text-center text-capitalize" style="padding-top: 14.5px;" href="#" id="avatar"><strong>
+                                        <h5{{ request.user.username|make_list|first }}</h5>
+                                    </strong></span>
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="mr-3 ml-3">
+                {% block myheader %}
+                {% endblock %}
+                {% block body %} {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Popper.JS -->
+    <!-- Bootstrap JS -->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+    <script>
+        async function showLogout(item) {
+            await Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#218838',
+                cancelButtonColor: '#0085CA',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("logout").action = "/accounts/logout/";
+                    document.getElementById("logout_confirmed").click();
+                }
+            })
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+{% extends 'schoolPages/dashboard_layout.html' %}
+{% load static %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+
+
+
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>
+    
+{% endfor %}
+
+<!-- <div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{filter.form}}
+                <button class="btn btn-primary float-right" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<table class="table">
+    <a style="background-color: #080808; border: #080808;" href="{% url 'student_create' %}" class="btn btn-primary mb-3">Add Student</a>
+    <br>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Reg Year</th>
+            <th>Phyisical Disability</th>
+            <th>Class</th>
+            <th colspan="2" style="text-align: center;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in page_obj %}
+        <tr>
+            <td>{{student.1}}</td>
+            <td>{{student.2}}</td>
+            <td>{{student.3}}</td>
+            <td>{{student.4}}</td>
+            <td>{{student.5}}</td>
+            <td style="text-align: center;">{{student.6}}</td>
+            <td>{{student.7}}</td>
+            <td><a href="{% url 'student_update' student.0 %}" class="btn btn-sm btn-success">Update</a></td>
+            <td><a href="{% url 'student_delete' student.0 %}" class="btn btn-sm btn-danger">Delete</a></td>
+
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+<div class="float-right">
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+
+{% endblock %}

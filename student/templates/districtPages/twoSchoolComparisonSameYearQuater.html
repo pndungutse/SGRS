@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>two School Comparison on Quater</title>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            /* margin: 25px 0; */
+            font-size: 1.0em;
+            font-family: sans-serif;
+            width: 900px;
+            height: 100px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        }
+    .styled-table thead tr {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        
+    }
+     td {
+        width: 50px;
+        height: 20px;
+        
+    } 
+    
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #070707;
+    }
+    .subject {
+                width: 140px;
+                height: 60px;
+                font-size: 11px;
+                text-align: center;
+            }
+    .course {
+        font-size: 12px;
+    }
+    
+    /* .toCenter {
+        margin: 30px;
+    } */
+    </style> 
+</head>
+<body>
+
+   
+    School 1: {{school1Searched}} <br><br>
+
+    School 2: {{school2Searched}} <br><br>
+
+    Year: {{yearSearched}} <br><br>
+    Quater: {{quaterSearched}} <br><br>
+
+
+    
+<center><h3>{{school1Searched}} PRIMARY SCHOOL PERFORMANCE IN THE YEAR OF {{yearSearched}} in {{quaterSearched}}</h3>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th><strong>Course</strong></th>
+                <th class="subject">Students with 0-25 Marks</th>
+                <th class="subject">Students with 26-50 Marks</th>
+                <th class="subject">Students with 51-75 Marks</th>
+                <th class="subject">Students with 76-100 Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="course" style="text-align: left;">Math</td>
+                <td class="subject">{{math_school1_25}}</td>
+                <td class="subject">{{math_school1_50}}</td>
+                <td class="subject">{{math_school1_75}}</td>
+                <td class="subject">{{math_school1_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">STE</td>
+                <td class="subject">{{est_school1_25}}</td>
+                <td class="subject">{{est_school1_50}}</td>
+                <td class="subject">{{est_school1_75}}</td>
+                <td class="subject">{{est_school1_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Social Studies</td>
+                <td class="subject">{{social_school1_25}}</td>
+                <td class="subject">{{social_school1_50}}</td>
+                <td class="subject">{{social_school1_75}}</td>
+                <td class="subject">{{social_school1_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">English</td>
+                <td class="subject">{{engl_school1_25}}</td>
+                <td class="subject">{{engl_school1_50}}</td>
+                <td class="subject">{{engl_school1_75}}</td>
+                <td class="subject">{{engl_school1_100}}</td> 
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Kinyarwanda</td>
+                <td class="subject">{{kiny_school1_25}}</td>
+                <td class="subject">{{kiny_school1_50}}</td>
+                <td class="subject">{{kiny_school1_75}}</td>
+                <td class="subject">{{kiny_school1_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Total</td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject">{{n_students_school1}}</td>
+            </tr>
+        </tbody>
+    </table>
+</center> 
+
+<center><h3>{{school2Searched}} PRIMARY SCHOOL PERFORMANCE IN THE YEAR OF {{yearSearched}} in {{quaterSearched}}</h3>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th><strong>Course</strong></th>
+                <th class="subject">Students with 0-25 Marks</th>
+                <th class="subject">Students with 26-50 Marks</th>
+                <th class="subject">Students with 51-75 Marks</th>
+                <th class="subject">Students with 76-100 Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="course" style="text-align: left;">Math</td>
+                <td class="subject">{{math_school2_25}}</td>
+                <td class="subject">{{math_school2_50}}</td>
+                <td class="subject">{{math_school2_75}}</td>
+                <td class="subject">{{math_school2_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">STE</td>
+                <td class="subject">{{est_school2_25}}</td>
+                <td class="subject">{{est_school2_50}}</td>
+                <td class="subject">{{est_school2_75}}</td>
+                <td class="subject">{{est_school2_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Social Studies</td>
+                <td class="subject">{{social_school2_25}}</td>
+                <td class="subject">{{social_school2_50}}</td>
+                <td class="subject">{{social_school2_75}}</td>
+                <td class="subject">{{social_school2_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">English</td>
+                <td class="subject">{{engl_school2_25}}</td>
+                <td class="subject">{{engl_school2_50}}</td>
+                <td class="subject">{{engl_school2_75}}</td>
+                <td class="subject">{{engl_school2_100}}</td> 
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Kinyarwanda</td>
+                <td class="subject">{{kiny_school2_25}}</td>
+                <td class="subject">{{kiny_school2_50}}</td>
+                <td class="subject">{{kiny_school2_75}}</td>
+                <td class="subject">{{kiny_school2_100}}</td>
+            </tr>
+            <tr>
+                <td class="course" style="text-align: left;">Total</td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject"></td>
+                <td class="subject">{{n_students_school2}}</td>
+            </tr>
+        </tbody>
+    </table>
+</center> 
+</body>
+</html>

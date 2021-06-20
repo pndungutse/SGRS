@@ -1,0 +1,63 @@
+{% extends 'schoolPages/home_school.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style>
+    .profile-pic {
+        max-width: 260px;
+        max-height: 260px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+</style>
+
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-body">
+            <a class="btn btn-success" href="{% url 'schoolPage' %}">&#8592; Back To Profile</a>
+            <br>
+             <h3 style="text-align: center;">Account Settings</h3>
+             <br>
+             <img class="profile-pic" src="{{ request.user.school.profile_pc.url }}" alt="">
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card card-body">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                {{form.school_name|as_crispy_field}}
+                            </div>
+                            <div class="form-group">
+                                {{form.sector|as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{form.logo|as_crispy_field}}
+                            </div>
+                            <div class="form-group">
+                                {{form.profile_pc|as_crispy_field}}
+                            </div>
+                        </div>
+                            
+                    
+                </div>
+                
+
+                <input class="btn btn-success mt-5" type="submit" name="Update Information">
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

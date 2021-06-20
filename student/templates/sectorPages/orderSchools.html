@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Schools</title>
+</head>
+<body>
+    Let's see Ordered Schools Here! <br><br>
+    Year: {{yearSearched}} <br><br>
+
+    Schools: <br><br>
+    {% for school in schools %}
+        {{school}} <br>
+    {% endfor %} <br><br>
+
+    {% for math in total_math_quater1 %}
+        {{math}}
+    {% endfor %}
+
+</body>
+</html>

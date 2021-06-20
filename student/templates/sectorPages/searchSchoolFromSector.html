@@ -1,0 +1,522 @@
+{% extends "sectorPages/home_sector.html" %} 
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block jquery %} 
+{% endblock %} 
+
+{% block sectorName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{sector}} Sector</span>
+</li>
+{% endblock %}
+
+
+{% block extrahead %}
+
+<style>
+  .atag {
+    background-color: lightslategrey;
+  }
+  .atag1 {
+    background-color: skyblue;
+  }
+  .atag2 {
+    background-color: rosybrown;
+  }
+  .atag3 {
+    background-color: indianred;
+  }
+  
+  .atag:hover {
+    background-color: gray;
+  }
+  .atag1:hover {
+    background-color: gray;
+  }
+  .atag2:hover {
+    background-color: gray;
+  }
+  .atag3:hover {
+    background-color: gray;
+  }
+</style>
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<div class="row">
+  <div class="col-md-4">
+    <a
+      class="btn btn-info btn-block"
+      data-toggle="modal"
+      data-target="#myModal1"
+    >
+      Generate Report for Single School
+  </a>
+    
+  </div>
+  <div class="col-md-4">
+    <a
+      class="btn btn-secondary btn-block"
+      data-toggle="modal"
+      data-target="#myModal4"
+    >
+      Order Schools Based on Performance
+</a>
+  </div>
+  <div class="col-md-4">
+    <a
+      class="btn btn-success btn-block"
+      data-toggle="modal"
+      data-target="#myModal3"
+    >
+      Generate Report Based on Year Comparison
+  </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <a
+      class="btn btn-secondary btn-block"
+      data-toggle="modal"
+      data-target="#myModal2"
+    >
+      Generate Report for Schools Comparison
+  </a>
+  </div>
+</div>
+  
+
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on Single School</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <div class="container mt-3">
+        <br />
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#year"
+              >Year Report</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#quater"
+              >Quater Report</a
+            >
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="year" class="container tab-pane active">
+            <br />
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <form role="search" action="schoolReportFromSectorYear">
+                      <div class="form-group">
+                        <select name="school" id="" class="form-control">
+                          <option selected disabled>Select School</option>
+                          {% for school in schools %}
+                          <option value="{{school.id}}">
+                            {{school.school_name}}
+                          </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          role="search"
+                          placeholder="Search by Year"
+                          name="year" required
+                        />
+                      </div>
+
+                      <button class="btn btn-success btn-sm">
+                        Generate Report
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="quater" class="container tab-pane fade">
+            <br />
+
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <form role="search" action="schoolReportFromSectorQuater">
+                      <div class="form-group">
+                        <select name="school" id="" class="form-control">
+                          <option selected disabled>Select School</option>
+                          {% for school in schools %}
+                          <option value="{{school.id}}">
+                            {{school.school_name}}
+                          </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <select name="quater" id="" class="form-control">
+                          <option selected disabled>Select Quater</option>
+                          <option value="QUATER1">QUATER1</option>
+                          <option value="QUATER2">QUATER2</option>
+                          <option value="QUATER3">QUATER2</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          role="search"
+                          placeholder="Enter Year"
+                          name="year" required
+                        />
+                      </div>
+
+                      <button class="btn btn-success btn-sm">
+                        Generate Report
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on choices</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form role="search" action="twoSchoolComparisonSameYear">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" name="school1" id="res5">
+                  <option selected disabled>Select School 1</option>
+                  {% for school in schools %}
+                  <option value="{{school.id}}">{{school.school_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" name="school2" id="res6">
+                  <option selected>Select School 2</option>
+                  {% for school in schools %}
+                  <option value="{{school.id}}">{{school.school_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <center>
+              <input
+                type="number"
+                class="form-control"
+                role="search"
+                placeholder="Search by Year"
+                name="year" required
+              />
+            </center>
+          </div>
+
+          <button class="btn btn-success btn-sm">Generate Report</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on choices</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form role="search" action="schoolYearComparisonFromSector">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <select class="form-control" name="school" id="res6">
+                  {% for school in schools %}
+                  <option value="{{school.id}}">{{school.school_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  role="search"
+                  placeholder="Enter Year 1"
+                  name="year1" required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  role="search"
+                  placeholder="Enter Year 2"
+                  name="year2" required
+                />
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-success btn-sm">Generate Report</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate report based on choices</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form role="search" action="schoolAvgMarkFormSector">
+          <div class="row">
+            
+              <div class="col-md-6">
+                <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  role="search"
+                  placeholder="Search by Year"
+                  name="year" required
+                />
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-success btn-sm">Generate Report</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<div class="row">
+<div class="col-md-6">
+  
+  <div class="card bg-white text-black shadow md-4">
+    <a href="male_femeleSectorPdf" class="btn btn-info btn-sm">View in Pdf</a>
+    <h5 class="text-center">Gender Students' Partcipating in {{sector}}</h5> <br>
+    <canvas id="myChart" width="500" height="200"></canvas>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="card bg-white text-black shadow md-4">
+    <a href="{% url 'physicalSectorPdf' %}" class="btn btn-info btn-sm">View in Pdf</a>
+    <h5 class="text-center">Physical Disability Students' Partcipating in {{sector}}</h5>
+    <canvas id="myChart1" width="500" height="200"></canvas>
+  </div>
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+    var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: {
+// labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+labels: ['Male Students ','Female Students'],
+datasets: [{
+    label: '# of Students with the following range of marks',
+    {% for obj in answers2 %}
+    data: [(({{obj.0}}*100)/{{obj.4}}).toFixed(1), (({{obj.1}}*100)/{{obj.4}}).toFixed(1)],
+  {% endfor %}
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+    ],
+    borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+    ],
+    borderWidth: 1
+}]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+}); 
+</script>
+
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChart1').getContext('2d');
+  var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['Physical Disability','No Physical Disability'],
+  datasets: [{
+      label: '# of Students with the following range of marks',
+    {% for obj in answers2 %}
+      data: [(({{obj.2}}*100)/{{obj.4}}).toFixed(1), (({{obj.3}}*100)/{{obj.4}}).toFixed(1)],
+    {% endfor %}
+      backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          
+      ],
+      borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          
+      ],
+      borderWidth: 1
+  }]
+  },
+  options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+  });
+  }); 
+  </script>
+
+{% endblock %}
+
+<br />

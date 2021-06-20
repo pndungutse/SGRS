@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schoolQuaterReport</title>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            /* margin: 25px 0; */
+            font-size: 1.0em;
+            font-family: sans-serif;
+            width: 900px;
+            height: 100px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        }
+    .styled-table thead tr {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        
+    }
+     td {
+        width: 70px;
+        height: 70px;
+    } 
+    
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #070707;
+    }
+    .subject {
+                width: 140px;
+                height: 60px;
+                font-size: 11px;
+            }
+    .course {
+        font-size: 12px;
+    }
+    /* .toCenter {
+        margin: 30px;
+    } */
+
+    @page {
+            size: a4 portrait;
+            @frame content_frame {
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <div id="header_content">
+    District: <strong>{{district}}</strong><br><br>
+    Sector: <strong>{{sector}}</strong> <br><br>
+    School: <strong>{{school}}</strong>
+    </div>
+   
+    <center><h3>{{school}} PRIMARY SCHOOL PERFORMANCE IN THE YEAR OF {{yearSearched}} IN {{quaterSearched}} </h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th><strong>Course</strong></th>
+                    <th class="subject">Students with 0-25 Marks</th>
+                    <th class="subject">Students with 26-50 Marks</th>
+                    <th class="subject">Students with 51-75 Marks</th>
+                    <th class="subject">Students with 76-100 Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="course" style="text-align: left;">Math</td>
+                    <td class="subject">{{math_school1_25}}</td>
+                    <td class="subject">{{math_school1_50}}</td>
+                    <td class="subject">{{math_school1_75}}</td>
+                    <td class="subject">{{math_school1_100}}</td>
+                </tr>
+                <tr>
+                    <td class="course" style="text-align: left;">STE</td>
+                    <td class="subject">{{est_school1_25}}</td>
+                    <td class="subject">{{est_school1_50}}</td>
+                    <td class="subject">{{est_school1_75}}</td>
+                    <td class="subject">{{est_school1_100}}</td>
+                </tr>
+                <tr>
+                    <td class="course" style="text-align: left;">Social Studies</td>
+                    <td class="subject">{{social_school1_25}}</td>
+                    <td class="subject">{{social_school1_50}}</td>
+                    <td class="subject">{{social_school1_75}}</td>
+                    <td class="subject">{{social_school1_100}}</td>
+                </tr>
+                <tr>
+                    <td class="course" style="text-align: left;">English</td>
+                    <td class="subject">{{engl_school1_25}}</td>
+                    <td class="subject">{{engl_school1_50}}</td>
+                    <td class="subject">{{engl_school1_75}}</td>
+                    <td class="subject">{{engl_school1_100}}</td> 
+                </tr>
+                <tr>
+                    <td class="course" style="text-align: left;">Kinyarwanda</td>
+                    <td class="subject">{{kiny_school1_25}}</td>
+                    <td class="subject">{{kiny_school1_50}}</td>
+                    <td class="subject">{{kiny_school1_75}}</td>
+                    <td class="subject">{{kiny_school1_100}}</td>
+                </tr>
+                <tr>
+                    <td class="course" style="text-align: left;">Total</td>
+                    <td class="subject"></td>
+                    <td class="subject"></td>
+                    <td class="subject"></td>
+                    <td class="subject">{{total_students}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+<br>
+<div id="footer_content"> (c) - page <pdf:pagenumber>
+    of <pdf:pagecount>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schoolStatisticalReportYear</title>
+</head>
+<body>
+    schoolStatisticalReportYear <br><br>
+
+    Classe searched: {{classee}} <br><br>
+    Year Searched: {{yearSearched}} <br><br>
+
+    {% for marks in math_marks %}
+        {{marks.student}}
+    {% endfor %}
+
+    <br>
+    <br>
+    {% for student in students %}{{student}}<br >{% endfor %}
+
+
+<br>
+    <br>
+    {% for student in studentss %}
+    {{student.student}}
+    {% endfor %}
+
+
+</body>
+</html>

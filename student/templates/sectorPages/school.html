@@ -1,0 +1,59 @@
+{% extends "district_create.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="cod-md-4">
+      <div class="card text-center text-white mb-3" id="districts_registered">
+        <div class="card-header">
+          <h5 class="card-title">Classes Created in {{schooll.school_name}} Primary School</h5>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{ total_classes }}</h3>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <h4>School: {{schooll.school_name}}</h4>
+            <hr>
+            <a href="" class="btn btn-outline-info btn-sm btn-block">Update School</a>
+            
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card card-body">
+            <h5>Classes that belong to {{schooll.school_name}} Primary School</h5>
+            <hr>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>School Name</th>
+                    <th>Classe Name</th>
+                    <th colspan="2" class="text-center">Actions</th>
+                </tr>
+                </thead>
+                {% for class in classes %}
+                    <tr>
+                        <td>{{ class.school }}</td>
+                        <td>{{ class.class_name }}</td>
+                        <td><a href="" class="btn btn-sm btn-info">Update</a></td>
+                        <td><a href="" class="btn btn-sm btn-danger">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %} 

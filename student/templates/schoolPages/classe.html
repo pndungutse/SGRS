@@ -1,0 +1,87 @@
+{% extends "schoolPages/home_school.html" %}
+{% load crispy_forms_tags %}
+
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h4>Students in {{classee}} Class</h4>
+                <hr>
+                <div class="card-body">
+                    <h3 class="card-title text-center">{{ total_students }}</h3>
+                  </div>
+                
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h4>Classe: {{classee}}</h4>
+                <hr>
+                <br>
+                <a href="{% url 'class_update' classee.id %}" class="btn btn-outline-info btn-sm btn-block">Update Class</a>
+                <br>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</br>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Students that belong to {{classee.class_name}} Class</h5>
+                </div>
+            </div>
+        
+            <hr>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th></th>
+                    <th>Class Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th colspan="2" class="text-center"><a href="{% url 'student_create' %}" class="btn btn-sm btn-success">New Student</a></th>
+                </tr>
+                </thead>
+                {% for student in students %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'student' student.id %}">View</a>
+                        </td>
+                        <td>{{ student.classe }}</td>
+                        <td>{{ student.f_name }}</td>
+                        <td>{{ student.l_name }}</td>
+                        <td>{{ student.gender }}</td>
+                        <td>{{ student.dob }}</td>
+                        <td><a href="{% url 'student_update' student.id %}" class="btn btn-sm btn-info">Update</a></td>
+                        <td><a href="{% url 'student_delete' student.id %}"" class="btn btn-sm btn-danger">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

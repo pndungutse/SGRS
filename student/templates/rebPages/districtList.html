@@ -1,0 +1,56 @@
+{% extends 'rebPages/dashboard_layout.html' %}
+{% load static %}
+
+{% block displayname %}
+<h5 style="color: black;">Rwanda Education Board</h5>
+{% endblock %}
+
+{% block body %}
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>
+    
+{% endfor %}
+    
+<table class="table">
+    <a style="background-color: #080808; border: #080808;" class="btn btn-primary mb-3" href="{% url 'district_create' %}">Add District</a>
+    <br>
+    <thead>
+        <tr>
+            <th>District Name</th>
+            <th colspan="2" class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for district in page_obj %}
+        <tr>
+            <td>{{district.district_name}}</td>
+            <td><a href="{% url 'district_update' district.id %}" class="btn btn-sm btn-success">Update</a></td>
+            <td><a href="{% url 'district_delete' district.id %}" class="brn btn-sm btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+<div class="float-right">
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Classes</title>
+    <style>
+
+        @page {
+          size: letter portrait;
+          @frame content_frame {
+            left: 50pt;
+            width: 512pt;
+            top: 50pt;
+            height: 692;
+            -pdf-frame-border: 1;
+          }
+         @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+          
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            /* margin: 25px 0; */
+            font-size: 1.0em;
+            font-family: sans-serif;
+            width: 900px;
+            height: 100px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        }
+    .styled-table thead tr {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        
+    }
+     td {
+        width: 50px;
+        height: 20px;
+        
+    } 
+    
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #070707;
+    }
+    .subject {
+                width: 140px;
+                height: 60px;
+                font-size: 11px;
+                text-align: center;
+            }
+    .container {
+        width: 200px;
+        height: 200px;
+    }
+
+    </style>
+
+</head>
+<body>
+<br />
+<div style="margin-left: 10px;">
+   <div id="header_content"> 
+  <h5>REB</h5>
+  District: <strong>{{school.sector.district}}</strong> <br><br>
+  Sector: <strong>{{school.sector}}</strong> <br><br>
+  School: <strong>{{school}}</strong>
+  </div>
+
+    <h1 style="text-align: center;">Classes Ranking for the School of {{school}} in {{yearSearched}}</h1>
+    <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="subject">Class Name</th>
+            <th class="subject">Average Marks</th>
+            <th class="subject">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in answers %}
+          <tr>
+            <td style="text-align: left; width: 220px; height: 80px;" class="subject">{{obj.0}}</td>
+            <td style="text-align: center; width: 220px; height: 80px;" class="subject">{{obj.1|floatformat:2}}</td>
+            <td style="text-align: center; width: 220px; height: 80px;" class="subject">{{ forloop.counter }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      <div id="footer_content"> (c) - page <pdf:pagenumber>
+    of <pdf:pagecount>
+  </div>
+</body>
+</html>

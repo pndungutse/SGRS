@@ -1,0 +1,82 @@
+My Project Users
+----------------
+Districts
+---------
+Nyarugenge
+----------
+username: bea
+Password: Uwamahoro123
+
+Sectors
+-------
+Sector: Kimisagara
+------------------
+username: tusifu
+email: cavani@gmail.com
+Password: edison123
+
+Schools
+-------
+Kamuhoza
+--------
+username: gad
+email: gad@gmail.com
+Password: Niyongabo123
+
+APEK
+----
+username: bobo
+password: user20882
+
+Sector: Nyakabanda
+------------------
+username: marcel
+email: marcel@gmail.com
+Password: Niyitegeka123
+
+
+Schools
+-------
+Apace
+-----
+username: patrick
+email:pndungutse1@gmail.com
+Password: User20882
+
+Intwari
+-------
+username: diane
+email: diane@gmail.com
+password: Uwamahoro123
+
+
+District: Karongi
+-----------------
+username: muvunyi
+password: user20882
+
+Sector: Rubengera
+-----------------
+username: jules
+password: user20882
+
+School
+------
+Rugengera1
+----------
+username: cedric
+password: user20882
+
+Rubengera2
+----------
+username: sam
+password: user20882
+
+
+Gasabo
+------
+username: carine
+Password: Uwase123
+
+
+

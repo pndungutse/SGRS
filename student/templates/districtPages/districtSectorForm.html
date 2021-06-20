@@ -1,0 +1,39 @@
+{% extends "districtPages/dashboard_layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block mytitle %}
+Create Sector
+{% endblock %}
+
+
+{% block myheader %}
+<h1 class="display-5">Sector Creation</h1>
+<p class="lead">Here, The Sector that will be created, will be used by the Schools that are belong to it</p>
+{% endblock %}
+
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>  
+{% endfor %}
+
+<form action="addSectorUser">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-info float-right">Add Sector User</button>
+        </form> <br >
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                {{form.sector_name|as_crispy_field}}
+                {{form.district|as_crispy_field}}
+                {{form.user|as_crispy_field}}
+            </div>
+        </div>
+        <br>
+        <button style="margin-left: 435px;" type="submit" class="btn btn-success">Create Sector</button>
+    </form>
+    
+{% endblock %} 

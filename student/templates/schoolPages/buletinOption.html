@@ -1,0 +1,34 @@
+{% extends "schoolPages/home_school.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+Student is : <strong>{{student.f_name}} {{student.l_name}}</strong> <br><br>
+
+    
+        <form role="search" action="{% url 'studentbulletin' student.id %}">
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" id="" role="search" name="quater" required>
+                            <option selected disabled>Select Quater</option>
+                            <option value="QUATER1">QUATER1</option>
+                            <option value="QUATER2">QUATER2</option>
+                            <option value="QUATER1">QUATER3</option>
+                        </select>
+                    </div>
+                </div>    
+                </div>
+            
+            <button class="btn btn-sm btn-success">Generate Quater Report</button>
+        
+        </form>
+        <form action="{% url 'studentbulletinForYear' student.id %}">
+            <button class="btn btn-sm btn-success float-right">Generate Year Report</button>
+        </form>
+         <br>
+    
+    
+    
+
+{% endblock %}

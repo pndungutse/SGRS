@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  </head>
+  <body>
+    <h1 class="text-center">Test HighCharts</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <div class="container1"></div>
+        </div>
+        <div class="col-sm-6 col-md-6"></div>
+        <div class="col-sm-6 col-md-6"></div>
+        <div class="col-sm-6 col-md-6"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(function() {
+          $('#container1').highcharts({
+        title: {
+          text: "Solar Employment Growth by Sector, 2010-2016",
+        },
+
+        subtitle: {
+          text: "Source: thesolarfoundation.com",
+        },
+
+        yAxis: {
+          title: {
+            text: "Number of Employees",
+          },
+        },
+
+        xAxis: {
+          accessibility: {
+            rangeDescription: "Range: 2010 to 2017",
+          },
+        },
+
+        legend: {
+          layout: "vertical",
+          align: "right",
+          verticalAlign: "middle",
+        },
+
+        plotOptions: {
+          series: {
+            label: {
+              connectorAllowed: false,
+            },
+            pointStart: 2010,
+          },
+        },
+
+        series: [
+          {
+            name: "Installation",
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
+          },
+          {
+            name: "Manufacturing",
+            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434],
+          },
+          {
+            name: "Sales & Distribution",
+            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
+          },
+          {
+            name: "Project Development",
+            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227],
+          },
+          {
+            name: "Other",
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111],
+          },
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500,
+              },
+              chartOptions: {
+                legend: {
+                  layout: "horizontal",
+                  align: "center",
+                  verticalAlign: "bottom",
+                },
+              },
+            },
+          ],
+        },
+      })
+    }
+          );
+    </script>
+  </body>
+</html>

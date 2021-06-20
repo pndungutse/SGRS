@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BULETTIN</title>
+     <style>
+
+        
+
+        .styled-table {
+            border-collapse: collapse;
+            /* margin: 25px 0; */
+            font-size: 1.0em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        }
+    .styled-table thead tr {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        
+    }
+     td {
+        width: 70px;
+        height: 70px;
+    } 
+    
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #070707;
+    }
+    .subject {
+                width: 140px;
+                height: 60px;
+            }
+    /* .toCenter {
+        margin: 30px;
+    } */
+
+    .boxes {
+        text-align: center;
+    }
+     @page {
+            @frame content_frame {
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        } 
+    </style> 
+
+</head>
+<body>
+        <div id="header_content">    
+        Sector: <strong>{{sector}}</strong> <br> <br>
+        School: <strong>{{school}}</strong> <br> <br>
+        Class: <strong>{{classe}}</strong> <br> <br>
+        Name: <strong>{{student.f_name}} {{student.l_name}}</strong> <br> <br>
+        N <sup>o</sup> of students: <strong>{{n_of_students}}</strong> <br><br>
+        </div>
+        <div class="text-center">
+            <img class="logo" src="http://localhost:8000{{school.logo.url}}" alt="" width="800px" height="100px">
+        </div>
+        
+    
+        <h3 style="text-align: center;">FORM REPORT</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 90px; height: 40px;">SUBJECT</th>
+                    <th colspan="3">FIRST TERM</th>
+                    <th colspan="3">SECOND TERM</th>
+                    <th colspan="3">THIRD TERM</th>
+                    <th colspan="3">TOTAL</th>
+                    <th>%</th>
+                    <th style="text-align: center;">Promotion</th>
+                    
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;">Subject</th>
+                        <th style="font-style: 0.8em; height: 30px; margin-top: 14px;"">Mid</th>
+                        <th style="font-style: 0.8em; height: 30px; margin-top: 14px;"">Final</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Total</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Mid</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Final</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Total</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Mid</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Final</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Total</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Mid</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Final</th>
+                        <th style="font-style: 0.9em; height: 30px; margin-top: 14px;"">Total</th>
+                      
+                        <th></th>
+                        <th></th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="subject"><strong>Kinyarwanda</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>200</strong></td>
+                <td class="boxes">{{kiny_mid_q1}}</td>
+                <td class="boxes">{{kiny_final_q1}}</td>
+                <td class="boxes">{{total_quater1_kiny}}</td>
+                <td class="boxes">{{kiny_mid_q2}}</td>
+                <td class="boxes">{{kiny_final_q2}}</td>
+                <td class="boxes">{{total_quater2_kiny}}</td>
+                <td class="boxes">{{kiny_mid_q3}}</td>
+                <td class="boxes">{{kiny_final_q3}}</td>
+                <td class="boxes">{{total_quater3_kiny}}</td>
+                
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="subject"><strong>English</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>200</strong></td>
+                <td class="boxes">{{engl_mid_q1}}</td>
+                <td class="boxes">{{engl_final_q1}}</td>
+                <td class="boxes">{{total_quater1_engl}}</td>
+                <td class="boxes">{{engl_mid_q2}}</td>
+                <td class="boxes">{{engl_final_q2}}</td>
+                <td class="boxes">{{total_quater2_engl}}</td>
+                <td class="boxes">{{engl_mid_q3}}</td>
+                <td class="boxes">{{engl_final_q3}}</td>
+                <td class="boxes">{{total_quater3_engl}}</td>
+                
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="subject"><strong>Maths</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>200</strong></td>
+                <td class="boxes">{{math_mid_q1}}</td>
+                <td class="boxes">{{math_final_q1}}</td>
+                <td class="boxes">{{total_quater1_math}}</td>
+                <td class="boxes">{{math_mid_q2}}</td>
+                <td class="boxes">{{math_final_q2}}</td>
+                <td class="boxes">{{total_quater2_math}}</td>
+                <td class="boxes">{{math_mid_q3}}</td>
+                <td class="boxes">{{math_final_q3}}</td>
+                <td class="boxes">{{total_quater3_math}}</td>
+                
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="subject"> <strong>Social Studies</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>200</strong></td>
+                <td class="boxes">{{social_mid_q1}}</td>
+                <td class="boxes">{{social_final_q1}}</td>
+                <td class="boxes">{{total_quater1_social}}</td>
+                <td class="boxes">{{social_mid_q2}}</td>
+                <td class="boxes">{{social_final_q2}}</td>
+                <td class="boxes">{{total_quater2_social}}</td>
+                <td class="boxes">{{social_mid_q3}}</td>
+                <td class="boxes">{{social_final_q3}}</td>
+                <td class="boxes">{{total_quater3_social}}</td>
+               
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="subject"><strong>SET</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>100</strong></td>
+                <td><strong>200</strong></td>
+                <td class="boxes">{{est_mid_q1}}</td>
+                <td class="boxes">{{est_final_q1}}</td>
+                <td class="boxes">{{total_quater1_est}}</td>
+                <td class="boxes">{{est_mid_q2}}</td>
+                <td class="boxes">{{est_final_q2}}</td>
+                <td class="boxes">{{total_quater2_est}}</td>
+                <td class="boxes">{{est_mid_q3}}</td>
+                <td class="boxes">{{est_final_q3}}</td>
+                <td class="boxes">{{total_quater3_est}}</td>
+                
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            <td class="subject"><strong>TOTAL</strong></td>
+            <td><strong>500</strong></td>
+            <td><strong>500</strong></td>
+            <td><strong>1000</strong></td>
+            <td class="boxes"colspan="2">{{total_quater1_percent}} %</td>
+            <td>{{total_quater1}}</td>
+            <td class="boxes" colspan="2">{{total_quater2_percent}}</td>
+            <td>{{total_quater2}}</td>
+            <td class="boxes" colspan="2">{{total_quater3_percent}} %</td>
+            <td>{{total_quater3}}</td>
+            <td class="boxes">{{total_year_percent}} %</td>
+            <td class="boxes"><strong>{{promotion}}</strong></td>
+            </tr>
+        </tbody>
+        </table>
+  <div id="footer_content"> (c) - page <pdf:pagenumber>
+    of <pdf:pagecount>
+  </div>
+
+</body>
+</html>

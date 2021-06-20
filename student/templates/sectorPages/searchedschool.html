@@ -1,0 +1,296 @@
+{% extends "sectorPages/home_sector.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block mytitle %}
+School Report for {{school}}
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <h4 class="text-center">This is the Statistical Reports of the {{school}} 's Students Performance</h4> <br>
+        <h5 class="text-center">Number of Students who got marks between this range in Maths Course</h5> <br>
+        <div class="row">
+            <div class="col">
+              <div class="cod-md-4">
+                <div class="card text-center text-white mb-3" id="districts_registered">
+                  <div class="card-header">
+                    <h4 class="card-title">Maths</h4>
+                  </div>
+                
+                    <h5>N<sup>o</sup> Student with 0-25</h5>
+                    <h3 class="text-center">{{quater1_math25}}</h3>
+               
+                </div>
+                </div>
+            </div>
+            <div class="col">
+            <div class="cod-md-4">
+                <div class="card text-center text-white mb-3" id="districts_registered">
+                  <div class="card-header">
+                    <h4 class="card-title">Maths</h4>
+                  </div>
+                 
+                    <h5>N<sup>o</sup> Student with 26-50</h5>
+                    <h3 class="text-center">{{quater1_math50}}</h3>
+                  
+                </div>
+                </div>
+            </div>
+            <div class="col">
+            <div class="cod-md-4">
+                <div class="card text-center text-white mb-3" id="districts_registered">
+                  <div class="card-header">
+                    <h4 class="card-title">Maths</h4>
+                  </div>
+                  
+                    <h5>N<sup>o</sup> Student with 51-75</h5>
+                    <h3 class="text-center">{{quater1_math75}}</h3>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="cod-md-4">
+                <div class="card text-center text-white mb-3" id="districts_registered">
+                  <div class="card-header">
+                    <h4 class="card-title">Maths</h4>
+                  </div>
+                 
+                    <h5 class="card-title">N<sup>o</sup> Student with 76-100</h5>
+                    <h3 class="text-center">{{quater1_math100}}</h3>
+                  
+                </div>
+            </div>
+        </div>
+        </div>
+        <h5 class="text-center">Number of Students who got marks between this range in English Course</h5> <br>
+        <div class="row">
+            <div class="col">
+            <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">English</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 0-25</h5>
+                  <h3 class="text-center">{{quater1_engl25}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">English</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 26-50</h5>
+                  <h3 class="text-center">{{quater1_engl50}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">English</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 51-75</h5>
+                  <h3 class="text-center">{{quater1_engl75}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">English</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 76-100</h5>
+                  <h3 class="text-center">{{quater1_engl100}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        </div>
+        <h5 class="text-center">Number of Students who got marks between this range in SET Course</h5> <br>
+        <div class="row">
+            <div class="col">
+            <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">SET</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 0-25</h5>
+                  <h3 class="text-center">{{quater1_set25}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">SET</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 26-50</h5>
+                  <h3 class="text-center">{{quater1_set50}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">SET</h4>
+                </div>
+               
+                  <h5 class="card-title">N<sup>o</sup> Student with 51-75</h5>
+                  <h3 class="text-center">{{quater1_set75}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">SET</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 76-100</h5>
+                  <h3 class="text-center">{{quater1_set100}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        </div>
+        <h5 class="text-center">Number of Students who got marks between this range in Social Studies Course</h5> <br>
+        <div class="row">
+            <div class="col">
+            <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Social Studies</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 0-25</h5>
+                  <h3 class="text-center">{{quater1_social25}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Social Studies</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 26-50</h5>
+                  <h3 class="text-center">{{quater1_social50}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Social Studies</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 51-75</h5>
+                  <h3 class="text-center">{{quater1_social75}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Social Studies</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 76-100</h5>
+                  <h3 class="text-center">{{quater1_social100}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        </div>
+        <h5 class="text-center">Number of Students who got marks between this range in Kinyarwanda Course</h5> <br>
+        <div class="row">
+            <div class="col">
+            <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Kinyarwanda</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 0-25</h5>
+                  <h3 class="text-center">{{quater1_kiny25}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Kinyarwanda</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 26-50</h5>
+                  <h3 class="text-center">{{quater1_kiny50}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Kinyarwanda</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 51-75</h5>
+                  <h3 class="text-center">{{quater1_kiny75}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cod-md-4">
+              <div class="card text-center text-white mb-3" id="districts_registered">
+                <div class="card-header">
+                  <h4 class="card-title">Kinyarwanda</h4>
+                </div>
+                
+                  <h5 class="card-title">N<sup>o</sup> Student with 76-100</h5>
+                  <h3 class="text-center">{{quater1_kiny100}}</h3>
+                
+              </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

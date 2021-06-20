@@ -1,0 +1,4 @@
+Apps to Install in My Schools Grading and Reporting System(SGRS) Django
+-----------------------------------------------------------------------
+pip install --pre xhtml2pdf
+pip install pillow

@@ -1,0 +1,51 @@
+{% extends "sectorPages/dashboard_layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block mytitle %}
+Create School
+{% endblock %}
+
+
+
+{% block myheader %}
+{% for message in messages %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{message}}.
+</div>
+    
+{% endfor %}
+<h1 class="display-5">School Creation</h1>
+<form action="addSchoolUser">
+{% csrf_token %}
+<button class="btn btn-sm btn-info float-right">Add School User</button>
+</form>
+<p class="lead">Here, The School that will be created, will be used by the Classes that are belong to it</p>
+{% endblock %}
+
+{% block sectorName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{sector}} Sector</span>
+</li>
+{% endblock %}
+
+
+{% block body %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                {{form.school_name|as_crispy_field}}
+                {{form.sector|as_crispy_field}}
+               {{form.logo|as_crispy_field}}
+               {{form.user|as_crispy_field}}
+            </div>
+        </div>
+        <br>
+        <button style="margin-left: 435px;" type="submit" class="btn btn-success">Create School</button>
+    </form>
+
+    
+
+
+{% endblock %} 

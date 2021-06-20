@@ -1,0 +1,613 @@
+{% extends "rebPages/dashboard_layout.html" %}
+{% load static %}
+{% block myBootstrapFiles %}
+
+<link rel="stylesheet" href="{% static 'css/simple-sidebar.css'%}">
+
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script src="{% static '/js/chartjs/Chart.min.js' %}"></script>
+<link rel="stylesheet" href="{% static '/css/chartcss/Chart.min.css'%}">
+
+<!-- Bootstrap CSS CDN -->
+
+<link rel="stylesheet" href="{% static 'css/bootstraphome.min.css' %}">
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block jquery %}
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#districts").on('change', function () {
+            var district = $("#districts").val();
+            console.log(district)
+            $.get("/dataDistrict?district=" + district, function (data, status) {
+                //$('#response').html(data)
+                $("#sectors").html(data)
+            });
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#districts2").on('change', function () {
+            var district = $("#districts2").val();
+            console.log(district)
+            $.get("/dataDistrict?district=" + district, function (data, status) {
+                //$('#response').html(data)
+                $("#sectors2").html(data)
+            });
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#districts3").on('change', function () {
+            var district = $("#districts3").val();
+            console.log(district)
+            $.get("/dataDistrict?district=" + district, function (data, status) {
+                //$('#response').html(data)
+                $("#sectors3").html(data)
+            });
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#districts4").on('change', function () {
+            var district = $("#districts4").val();
+            console.log(district)
+            $.get("/dataDistrict?district=" + district, function (data, status) {
+                //$('#response').html(data)
+                $("#sectors4").html(data)
+            });
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#sectors").on('change', function () {
+            var sector = $("#sectors").val();
+            console.log(sector)
+            $.get("/dataSchool2?sector=" + sector, function (data, status) {
+                //$('#response').html(data)
+                $("#schools").html(data)
+            });
+        })
+    })
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#sectors2").on('change', function () {
+            var sector = $("#sectors2").val();
+            console.log(sector)
+            $.get("/dataSchool2?sector=" + sector, function (data, status) {
+                //$('#response').html(data)
+                $("#res2").html(data)
+            });
+        })
+    })
+
+</script>
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#sectors3").on('change', function () {
+            var sector = $("#sectors3").val();
+            console.log(sector)
+            $.get("/dataSchool2?sector=" + sector, function (data, status) {
+                //$('#response').html(data)
+                $('#res4').html(data)
+                $("#res3").html(data)
+            });
+        })
+    })
+
+</script>
+<script>
+    $(document).ready(function () {
+        //alert(6778)
+        $("#sectors4").on('change', function () {
+            var sector = $("#sectors4").val();
+            console.log(sector)
+            $.get("/dataSchool2?sector=" + sector, function (data, status) {
+                //$('#response').html(data)
+                $('#res5').html(data)
+                $("#res6").html(data)
+            });
+        })
+    })
+
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4">
+        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal">
+            Generate Report Based on Single School
+        </button>
+        
+
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal2">
+            Generate Report Based on Comparison
+        </button>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal3">
+            Generate Report for School Comparision
+        </button>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <dic class="col-md-4">
+        <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#myModal4">
+            Compare 2 Schools Based to Quater
+        </button>
+    </dic>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Generate report based on choices</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="">District:</label>
+                        <select class="form-control" name="district" id="districts">
+                            <option selected>Select Districts</option>
+                            {% for district in districts %}
+                            <option value="{{district.id}}">{{district.district_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Sector:</label>
+                                <select class="form-control" name="sector" id="sectors">
+                                    <option selected>Select Sector</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                        
+                            
+                      
+
+                    <form role="search" action='schoolReportFromDistrict'>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">School:</label>
+
+                                    <select class="form-control" name="school" id="schools">
+                                        <option selected>Select School</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                        <div class="form-group">
+                            <label for="">Year:</label>
+
+                            <input type="number" class="form-control" role="search" placeholder="Search by Year"
+                                name='year' required>
+                        </div>
+                    </div>
+
+                        <button class="btn btn-primary btn-sm">Generate Report</button>
+                    </form>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Generate report based Comparison</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">District:</label>
+                                <select class="form-control" name="district" id="districts2">
+                                    <option selected>Select Districts</option>
+                                    {% for district in districts %}
+                                    <option value="{{district.id}}">{{district.district_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <select class="form-control" name="sector" id="sectors2">
+                                    <option selected>Select Sector</option>
+                                </select>
+                            </div>
+                        </div>
+                            
+                        </div>
+                            <form role="search" action='yearMark'>
+
+
+                                <div class="form-group">
+                                    <select class="form-control" name="school" id="res2">
+                                        <option selected>Select School</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="number" class="form-control" role="search" placeholder="Year 1"
+                                        name='year1' required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" role="search" placeholder="Year 2"
+                                        name='year2' required>
+                                </div>
+
+                                <button class="btn btn-primary btn-sm">Generate Report</button>
+                            </form>
+
+                    
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Generate report based on choices</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">District:</label>
+                            <select class="form-control" name="district" id="districts3">
+                                <option selected>Select Districts</option>
+                                {% for district in districts %}
+                                <option value="{{district.id}}">{{district.district_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control" name="" id="sectors3">
+                        <option selected>Select Sectors</option>
+                    </select>
+                </div>
+
+                <form role="search" action='twoSchoolComparisonSameYear'>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control" name="school1" id="res3">
+                                    <option selected>Select School 1</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" role="search" placeholder="Search by Year"
+                                    name='year' required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control" name="school2" id="res4">
+                                    <option selected>Select School 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm">Generate Report</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Generate report based on choices</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">District:</label>
+                            <select class="form-control" name="district" id="districts4">
+                                <option selected>Select Districts</option>
+                                {% for district in districts %}
+                                <option value="{{district.id}}">{{district.district_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" name="sector" id="sectors4">
+                        <option selected>Select Sector</option>
+                    </select>
+                </div>
+
+                <form role="search" action='twoSchoolComparisonSameYearQuater'>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control" name="school1" id="res5">
+                                    <option selected>Select School 1</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" role="search" placeholder="Search by Year"
+                                    name='year' required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control" name="school2" id="res6">
+                                    <option selected>Select School 2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="quater">
+                                    <option selected disabled>Select Quater</option>
+                                    <option value="QUATER1">QUATER1</option>
+                                    <option value="QUATER2">QUATER2</option>
+                                    <option value="QUATER3">QUATER3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm">Generate Report</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>
+<br><br>
+<div class="row">
+
+<div class="col-md-6">
+    
+    <div class="card bg-white text-black shadow md-4">
+    <a href="{% url 'male_femaleReb' %}" class="btn btn-info btn-sm">View in Pdf</a>
+
+      <p class="text-center">Gender Students' Partcipating in all registered students</p> <br>
+      <canvas id="myChart" width="500" height="200"></canvas>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="card bg-white text-black shadow md-4">
+    <a href="{% url 'physicalReb' %}" class="btn btn-info btn-sm">View in Pdf</a>
+
+        <p class="text-center">Physical Disability Students' Partcipating in all registered students</p> <br>
+        <canvas id="myChart1" width="500" height="200"></canvas>
+      </div>
+</div>
+    
+
+<script>
+  $(document).ready(function(){
+      var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: {
+  // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+  labels: ['Male Students ','Female Students'],
+  datasets: [{
+      label: '# of Students with the following range of numbers',
+      
+        {% for obj in answers %}
+      data: [(({{obj.0}}*100)/{{obj.4}}).toFixed(1),(({{obj.1}}*100)/{{obj.4}}).toFixed(1)],
+        {% endfor %}
+
+      backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+      ],
+      borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+      ],
+      borderWidth: 1
+  }]
+},
+options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+});
+  }); 
+</script>
+<script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart1').getContext('2d');
+  var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    // labels: [{% for school in qs %}'{{ school.sector }}',{% endfor %}],
+    labels: ['Physical Disability Students ','NO Physical Disability Students'],
+    datasets: [{
+        label: '# of Students with the following range of numbers',
+        
+          {% for obj in answers %}
+        data: [(({{obj.2}}*100)/{{obj.4}}).toFixed(1),(({{obj.3}}*100)/{{obj.4}}).toFixed(1)],
+          {% endfor %}
+  
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+        ],
+        borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+        ],
+        borderWidth: 1
+    }]
+  },
+  options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          datalabels: {
+            color: '#000',
+            {% comment %} anchor: 'end',
+            align: 'start', {% endcomment %}
+            offset: -10,
+            {% comment %} borderWidth: 2,
+            borderColor: '#808080',
+            borderRadius: 50, {% endcomment %}
+            {% comment %} backgroundColor: (context) => {
+              return context.dataset.backgroundColor;
+            }, {% endcomment %}
+            font: {
+              weight: 'bold',
+              size: '10'
+            },
+            formatter: (value) => {
+              return value + '%';
+            }
+          }
+        }
+      }
+  });
+    }); 
+  </script>
+ 
+
+</div>
+{% endblock %}

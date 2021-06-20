@@ -1,0 +1,34 @@
+<style>
+nav .nav-item .nav-link .dropdown-menu .dropdown-item:active{
+  border: 2px solid red !important;
+}
+
+
+
+</style>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'districtPage' %}">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Register</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <a class="dropdown-item active" href="{% url 'sector_create' %}">Sector</a>
+    </ul>
+      </li>
+
+      <li class="nav-tabs">
+        <a href="{% url 'SearchSchoolFromDistrict' %}" class="nav-link">Statistical Reports</a>
+    </li>
+</ul>  
+
+
+<script>
+  item=document.querySelector(".nav .nav-item .nav-link");
+ console.log(item);
+
+ item.addEventListener("click",function(){
+    item.className +=' active';
+    console.log(item);
+  })
+</script>

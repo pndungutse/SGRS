@@ -1,0 +1,49 @@
+{% extends 'districtPages/home_district.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block profileButton %}
+
+{% endblock %}
+{% block body %}
+
+<style>
+    .profile-pic {
+        max-width: 260px;
+        max-height: 260px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+</style>
+
+
+
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <a class="btn btn-success" href="{% url 'districtPage' %}">&#8592; Back To Home</a>
+            <br>
+             <h3 style="text-align: center;">Account Settings</h3>
+             <br>
+             <img class="profile-pic" src="{{ request.user.district.profile_pc.url }}" alt="">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-body">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.district_name|as_crispy_field}}
+                {{form.profile_pc|as_crispy_field}}
+<br><br><br><br><br>
+                <input class="btn btn-success float-right" type="submit" name="Update Information">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

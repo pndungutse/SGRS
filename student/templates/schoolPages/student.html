@@ -1,0 +1,95 @@
+{% extends "schoolPages/home_school.html" %}
+{% load crispy_forms_tags %}
+{% block schoolName %}
+<li class="nav-item">
+    <span class="nav-link mt-2 text-uppercase text-success">{{school}} Primary School</span>
+</li>
+{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-5">
+        <div class="card card-body">
+            <h5>First Name: {{studentt.f_name}}</h5>
+            <h5>Last Name: {{studentt.l_name}}</h5>
+            <hr>
+            <a href="{% url 'student_update' studentt.id %}" class="btn btn-outline-success btn-sm btn-block">Update Student</a>
+            <a href="{% url 'createStudentCourse' studentt.id %}" class="btn btn-outline-info btn-sm btn-block">Enter marks</a>
+            <a href="{% url 'buletinOption' studentt.id %}" class="btn btn-outline-info btn-sm btn-block">Generate Bulletin</a>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card card-body">
+            <h5>Gender</h5>
+            <hr>
+            <p>Gender: <strong>{{ studentt.gender }}</strong></p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h5>Date of Birth</h5>
+            <hr>
+            <p>DOB: <strong>{{ studentt.dob }}</strong></p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h5>Class</h5>
+            <hr>
+            <p>Class: <strong>{{ studentt.classe }}</strong></p>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+
+            <form method="get">
+                {{ myFilter.form }}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Course</th>
+                    <th>Quater</th>
+                    <th>Mid marks</th>
+                    <th>Final Marks</th>
+                    <th colspan="2" class="text-center"><a href="{% url 'createClass' studentt.classe.id %}" class="btn btn-sm btn-success">New Student</a></th>
+                </tr>
+            </thead>
+               {% for student_course in student_courses %}
+                <tr>
+                  <td>{{ student_course.course }}</td>
+                  <td>{{ student_course.quater }}</td>
+                  <td>{{ student_course.mid_marks }}</td>
+                  <td>{{ student_course.final_marks }}</td>
+                  <td><a href="{% url 'student_course_update' student_course.id %}" class="btn btn-sm btn-success">Update marks</a></td>
+                  <td><a href="{% url 'student_course_delete' student_course.id %}" class="btn btn-sm btn-danger">Delete record</a></td>
+                </tr>
+               {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<br><br>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District Data</title>
+</head>
+<body>
+    
+
+    {% for sector in sectors %}
+
+    
+    <option value="{{sector.id}}">{{sector.sector_name}} </option>
+
+    {% endfor %}
+
+
+</body>
+</html>

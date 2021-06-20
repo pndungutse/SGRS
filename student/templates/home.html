@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGRS App</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+    <br>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/SGRS logo.png' %}" alt="logo" height="25px" width="120px">
+        </a>
+        
+        <!-- Links -->
+        <div class="collapse navbar-collapse justify-content-end">
+
+           <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{% url 'login' %}">Login</a>
+            </li>
+           </ul>
+                <!-- <button class="btn btn-sm btn-primary">Login</button> -->
+           
+        </div>
+      </nav>
+    
+
+    <br>
+        <div id="demo" class="carousel slide" data-ride="carousel">
+  
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+          
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'images/student111.jpg' %}" alt="Los Angeles">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/student1222org.jpg' %}" alt="Chicago">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/student1234.jpg' %}" alt="New York">
+              </div>
+            </div>
+          
+          
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          
+          </div>
+    </div>
+    
+    <script src="{% static 'js/plugin.js' %}"></script>
+
+
+    <script src="{% static 'js/jquery-3.5.1.slim.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/popper.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>
